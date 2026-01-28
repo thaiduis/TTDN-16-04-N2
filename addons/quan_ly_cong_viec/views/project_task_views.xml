@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================
+         FORM VIEW: Mở rộng Project Task
+         ======================================== -->
+    <record id="view_task_form_smart_extension" model="ir.ui.view">
+        <field name="name">project.task.form.smart</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            
+            <!-- Make statusbar clickable -->
+            <xpath expr="//field[@name='stage_id']" position="attributes">
+                <attribute name="options">{'clickable': 1, 'fold_field': 'fold'}</attribute>
+                <attribute name="readonly">0</attribute>
+                <attribute name="modifiers">{}</attribute>
+            </xpath>
+            
+            <!-- Add Smart Buttons -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="is_task_closed" invisible="1"/>
+                <field name="checklist_count" invisible="1"/>
+                <field name="checklist_done" invisible="1"/>
+                
+                <!-- Checklist Button -->
+                <button name="action_view_checklist" 
+                        type="object"
+                        class="oe_stat_button" 
+                        icon="fa-check-square-o">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="checklist_progress" widget="percentage"/>
+                        </span>
+                        <span class="o_stat_text">Checklist</span>
+                        <span class="text-muted">
+                            <field name="checklist_done"/> / <field name="checklist_count"/>
+                        </span>
+                    </div>
+                </button>
+                
+                <button name="action_open_smart_report_wizard" 
+                        type="object"
+                        class="oe_stat_button" 
+                        icon="fa-comments"
+                        attrs="{'invisible': [('is_task_closed', '=', True)]}">
+                    <field name="smart_report_ids" widget="statinfo" string="Báo cáo"/>
+                </button>
+                
+                <button name="%(action_task_score_card)d" 
+                        type="action"
+                        class="oe_stat_button" 
+                        icon="fa-trophy"
+                        attrs="{'invisible': [('score_card_id', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="score_card_id" invisible="1"/>
+                            Xem Điểm
+                        </span>
+                    </div>
+                </button>
+                
+                <button name="action_start_task" 
+                        type="object"
+                        class="oe_stat_button btn-success" 
+                        icon="fa-play"
+                        attrs="{'invisible': ['|', ('is_task_closed', '=', True), ('user_ids', '=', [])]}"
+                        string="BẮT ĐẦU"/>
+            </xpath>
+            
+            <!-- Add new page: Smart Features -->
+            <xpath expr="//notebook" position="inside">
+                <page string="🚀 Smart Execution" name="smart_features">
+                    <!-- Skill Warning Alert -->
+                    <div class="alert alert-warning" role="alert" attrs="{'invisible': [('skill_match_warning', '=', False)]}">
+                        <field name="skill_match_warning" nolabel="1"/>
+                    </div>
+                    
+                    <group>
+                        <group string="Yêu cầu Kỹ năng">
+                            <field name="required_skill_ids" widget="many2many_tags"/>
+                            <field name="skill_level_required"/>
+                        </group>
+                        
+                        <group string="Thời gian &amp; Hiệu suất">
+                            <field name="planned_hours"/>
+                            <field name="actual_hours"/>
+                            <field name="efficiency_ratio" widget="percentage"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Rủi ro &amp; Trạng thái">
+                            <field name="blocker_flag"/>
+                            <field name="risk_level"/>
+                            <field name="dependent_task_ids" widget="many2many_tags"/>
+                        </group>
+                        
+                        <group string="Gamification &amp; Project Structure">
+                            <field name="milestone_id"/>
+                            <field name="xp_reward" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <separator string="📋 Checklist"/>
+                    <div class="row">
+                        <div class="col-12">
+                            <button name="action_ai_suggest_checklist" 
+                                    type="object" 
+                                    string="🤖 AI Tạo Checklist" 
+                                    class="btn-primary"
+                                    attrs="{'invisible': [('checklist_count', '>', 0)]}"/>
+                            <p class="text-muted" attrs="{'invisible': [('checklist_count', '>', 0)]}">
+                                <i>AI sẽ tự động tạo checklist dựa trên tên và mô tả task</i>
+                            </p>
+                        </div>
+                    </div>
+                    <field name="checklist_ids" mode="tree" nolabel="1">
+                        <tree editable="bottom" decoration-success="is_done==True">
+                            <field name="sequence" widget="handle"/>
+                            <field name="is_done" widget="boolean_toggle"/>
+                            <field name="name"/>
+                            <field name="weight"/>
+                            <field name="estimated_hours" widget="float_time"/>
+                            <field name="ai_suggested" invisible="1"/>
+                            <button name="action_toggle_done" 
+                                    type="object" 
+                                    string="Toggle" 
+                                    icon="fa-check" 
+                                    class="btn-sm btn-link"/>
+                        </tree>
+                    </field>
+                    
+                    <separator string="Lịch sử Báo cáo"/>
+                    <field name="smart_report_ids" mode="tree,form" nolabel="1">
+                        <tree decoration-danger="blocker_detected">
+                            <field name="report_date"/>
+                            <field name="progress_percentage" widget="progressbar"/>
+                            <field name="time_spent"/>
+                            <field name="sentiment_score"/>
+                            <field name="blocker_detected"/>
+                        </tree>
+                    </field>
+                </page>
+                
+                <page string="🤖 AI &amp; Chi tiết" name="ai_details">
+                    <group>
+                        <group string="Chi tiết Thực tế">
+                            <field name="priority_level"/>
+                            <field name="complexity"/>
+                            <field name="testing_status"/>
+                            <field name="code_review_status"/>
+                            <field name="bug_count"/>
+                            <field name="rework_count"/>
+                        </group>
+                        
+                        <group string="Liên kết Ngoài">
+                            <field name="github_link" widget="url"/>
+                            <field name="jira_ticket"/>
+                            <field name="external_task_id"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="🤖 AI Analysis">
+                            <field name="ai_risk_score" widget="percentage"/>
+                            <field name="ai_estimated_hours"/>
+                            <field name="sentiment_score" widget="percentage"/>
+                        </group>
+                        
+                        <group string="AI Suggestions">
+                            <field name="ai_suggestions" nolabel="1" placeholder="AI sẽ đưa ra gợi ý tự động..."/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            
+            <!-- Add warning ribbon if blocker -->
+            <xpath expr="//form/sheet" position="before">
+                <div class="alert alert-danger" role="alert" 
+                     attrs="{'invisible': [('blocker_flag', '=', False)]}">
+                    <strong>⚠️ CẢNH BÁO:</strong> Công việc này đang bị chặn. Cần hỗ trợ!
+                </div>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- ========================================
+         TREE VIEW: Highlight blocked tasks
+         ======================================== -->
+    <record id="view_task_tree_smart" model="ir.ui.view">
+        <field name="name">project.task.tree.smart</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">blocker_flag == True</attribute>
+                <attribute name="decoration-warning">risk_level == 'high'</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="blocker_flag" invisible="1"/>
+                <field name="risk_level" optional="hide"/>
+                <field name="efficiency_ratio" optional="hide" widget="percentage"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================
+         KANBAN VIEW: Add progress indicator
+         ======================================== -->
+    <record id="view_task_kanban_smart" model="ir.ui.view">
+        <field name="name">project.task.kanban.smart</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_right')]" position="inside">
+                <field name="blocker_flag" invisible="1"/>
+                <span class="badge badge-danger" 
+                      t-if="record.blocker_flag.raw_value">
+                    🚫 BLOCKED
+                </span>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

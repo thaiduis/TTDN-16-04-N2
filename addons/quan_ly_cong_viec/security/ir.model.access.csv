@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_task_checklist_user,task.checklist.user,quan_ly_cong_viec.model_task_checklist,base.group_user,1,1,1,1
+access_task_checklist_manager,task.checklist.manager,quan_ly_cong_viec.model_task_checklist,project.group_project_manager,1,1,1,1
+access_task_smart_report_user,task.smart.report.user,quan_ly_cong_viec.model_task_smart_report,base.group_user,1,1,1,0
+access_task_smart_report_manager,task.smart.report.manager,quan_ly_cong_viec.model_task_smart_report,project.group_project_manager,1,1,1,1
+access_task_score_card_user,task.score.card.user,quan_ly_cong_viec.model_task_score_card,base.group_user,1,0,0,0
+access_task_score_card_manager,task.score.card.manager,quan_ly_cong_viec.model_task_score_card,project.group_project_manager,1,1,1,1
+access_task_api_connector_user,task.api.connector.user,quan_ly_cong_viec.model_task_api_connector,base.group_user,1,0,0,0
+access_task_api_connector_manager,task.api.connector.manager,quan_ly_cong_viec.model_task_api_connector,project.group_project_manager,1,1,1,1
+access_task_ai_assistant_user,task.ai.assistant.user,quan_ly_cong_viec.model_task_ai_assistant,base.group_user,1,0,0,0
+access_task_ai_assistant_manager,task.ai.assistant.manager,quan_ly_cong_viec.model_task_ai_assistant,project.group_project_manager,1,1,1,1
+

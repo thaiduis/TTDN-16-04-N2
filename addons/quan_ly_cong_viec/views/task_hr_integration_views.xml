@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================
+         TASK: Thêm HR Integration Fields
+         ======================================== -->
+    <record id="view_task_form_hr_integration" model="ir.ui.view">
+        <field name="name">project.task.form.hr.integration</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_task_form_smart_extension"/>
+        <field name="arch" type="xml">
+            
+            <!-- Add HR fields in form -->
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="nhan_vien_assigned_id"/>
+                <field name="phong_ban_id" readonly="1"/>
+            </xpath>
+            
+            <!-- Add Attendance hours -->
+            <xpath expr="//field[@name='actual_hours']" position="after">
+                <field name="total_attendance_hours" string="Giờ Chấm công"/>
+            </xpath>
+            
+            <!-- Milestone & OKR - Commented out until quan_ly_du_an is fully loaded
+            <xpath expr="//field[@name='milestone_id']" position="replace">
+                <field name="milestone_id" 
+                       context="{'default_project_id': project_id}"/>
+                <field name="okr_id"
+                       context="{'default_project_id': project_id}"/>
+            </xpath>
+            -->
+            
+            <!-- Add tab for Attendance -->
+            <xpath expr="//page[@name='ai_details']" position="after">
+                <page string="⏰ Chấm công" name="attendance">
+                    <field name="cham_cong_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="ngay_cham"/>
+                            <field name="gio_vao_sang"/>
+                            <field name="gio_ra_chieu"/>
+                            <field name="so_gio_lam"/>
+                            <field name="ghi_chu"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- ========================================
+         TASK TREE: Add nhân viên
+         ======================================== -->
+    <record id="view_task_tree_hr" model="ir.ui.view">
+        <field name="name">project.task.tree.hr</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="quan_ly_cong_viec.view_task_tree_smart"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='risk_level']" position="after">
+                <field name="nhan_vien_assigned_id" optional="show"/>
+                <field name="phong_ban_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

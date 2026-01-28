@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Task Unified Dashboard -->
+        <record id="access_task_unified_dashboard_user" model="ir.model.access">
+            <field name="name">task.unified.dashboard.user</field>
+            <field name="model_id" ref="model_task_unified_dashboard"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        
+        <record id="access_task_unified_dashboard_manager" model="ir.model.access">
+            <field name="name">task.unified.dashboard.manager</field>
+            <field name="model_id" ref="model_task_unified_dashboard"/>
+            <field name="group_id" ref="project.group_project_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <!-- Task Analytics Report -->
+        <record id="access_task_analytics_report_user" model="ir.model.access">
+            <field name="name">task.analytics.report.user</field>
+            <field name="model_id" ref="model_task_analytics_report"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        
+        <record id="access_task_analytics_report_manager" model="ir.model.access">
+            <field name="name">task.analytics.report.manager</field>
+            <field name="model_id" ref="model_task_analytics_report"/>
+            <field name="group_id" ref="project.group_project_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Task Git Integration -->
+        <record id="access_task_git_integration_user" model="ir.model.access">
+            <field name="name">task.git.integration.user</field>
+            <field name="model_id" ref="model_task_git_integration"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        
+        <record id="access_task_git_integration_manager" model="ir.model.access">
+            <field name="name">task.git.integration.manager</field>
+            <field name="model_id" ref="model_task_git_integration"/>
+            <field name="group_id" ref="project.group_project_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <!-- Task Git Commit -->
+        <record id="access_task_git_commit_user" model="ir.model.access">
+            <field name="name">task.git.commit.user</field>
+            <field name="model_id" ref="model_task_git_commit"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        
+        <record id="access_task_git_commit_manager" model="ir.model.access">
+            <field name="name">task.git.commit.manager</field>
+            <field name="model_id" ref="model_task_git_commit"/>
+            <field name="group_id" ref="project.group_project_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Task Git Branch -->
+        <record id="access_task_git_branch_user" model="ir.model.access">
+            <field name="name">task.git.branch.user</field>
+            <field name="model_id" ref="model_task_git_branch"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        
+        <record id="access_task_git_branch_manager" model="ir.model.access">
+            <field name="name">task.git.branch.manager</field>
+            <field name="model_id" ref="model_task_git_branch"/>
+            <field name="group_id" ref="project.group_project_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Task Git Pull Request -->
+        <record id="access_task_git_pullrequest_user" model="ir.model.access">
+            <field name="name">task.git.pullrequest.user</field>
+            <field name="model_id" ref="model_task_git_pullrequest"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        
+        <record id="access_task_git_pullrequest_manager" model="ir.model.access">
+            <field name="name">task.git.pullrequest.manager</field>
+            <field name="model_id" ref="model_task_git_pullrequest"/>
+            <field name="group_id" ref="project.group_project_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Task Git Issue -->
+        <record id="access_task_git_issue_user" model="ir.model.access">
+            <field name="name">task.git.issue.user</field>
+            <field name="model_id" ref="model_task_git_issue"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        
+        <record id="access_task_git_issue_manager" model="ir.model.access">
+            <field name="name">task.git.issue.manager</field>
+            <field name="model_id" ref="model_task_git_issue"/>
+            <field name="group_id" ref="project.group_project_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Task AI Chat Wizard -->
+        <record id="access_task_ai_chat_wizard" model="ir.model.access">
+            <field name="name">task.ai.chat.wizard</field>
+            <field name="model_id" ref="model_task_ai_chat_wizard"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================
+         TREE VIEW: Checklist
+         ======================================== -->
+    <record id="view_task_checklist_tree" model="ir.ui.view">
+        <field name="name">task.checklist.tree</field>
+        <field name="model">task.checklist</field>
+        <field name="arch" type="xml">
+            <tree string="Checklist" editable="bottom" decoration-success="is_done==True" decoration-warning="ai_risk_level=='high'">
+                <field name="sequence" widget="handle"/>
+                <field name="is_done" widget="boolean_toggle"/>
+                <field name="name"/>
+                <field name="weight" optional="hide"/>
+                <field name="estimated_hours" widget="float_time" sum="Total Hours"/>
+                <field name="ai_suggested" invisible="1"/>
+                <field name="ai_risk_level" optional="hide"/>
+                <field name="done_date" optional="hide"/>
+                <field name="done_by" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ========================================
+         FORM VIEW: Checklist Item
+         ======================================== -->
+    <record id="view_task_checklist_form" model="ir.ui.view">
+        <field name="name">task.checklist.form</field>
+        <field name="model">task.checklist</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Item">
+                <header>
+                    <field name="is_done" widget="statusbar" clickable="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="task_id"/>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="weight"/>
+                            <field name="estimated_hours" widget="float_time"/>
+                            <field name="ai_suggested" readonly="1"/>
+                            <field name="ai_risk_level" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Dependencies" invisible="1">
+                        <field name="dependency_ids" widget="many2many_tags"/>
+                    </group>
+                    
+                    <group string="Completion Info" attrs="{'invisible': [('is_done', '=', False)]}">
+                        <group>
+                            <field name="done_date" readonly="1"/>
+                            <field name="done_by" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" placeholder="Hướng dẫn, tài liệu, links..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ========================================
+         ACTION: Checklist
+         ======================================== -->
+    <record id="action_task_checklist" model="ir.actions.act_window">
+        <field name="name">Task Checklist</field>
+        <field name="res_model">task.checklist</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================
+         ACTIONS
+         ======================================== -->
+    
+    <!-- Dashboard Action -->
+    <record id="action_task_unified_dashboard" model="ir.actions.act_window">
+        <field name="name">Task Dashboard</field>
+        <field name="res_model">task.unified.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+    
+    <!-- Analytics Report Action -->
+    <record id="action_task_analytics_report" model="ir.actions.act_window">
+        <field name="name">Task Analytics</field>
+        <field name="res_model">task.analytics.report</field>
+        <field name="view_mode">graph,pivot,tree</field>
+        <field name="context">{'group_by': ['month', 'project_id']}</field>
+    </record>
+    
+    <!-- Git Integration Action -->
+    <record id="action_task_git_integration" model="ir.actions.act_window">
+        <field name="name">Git Repositories</field>
+        <field name="res_model">task.git.integration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- AI Assistant Action -->
+    <record id="action_task_ai_assistant" model="ir.actions.act_window">
+        <field name="name">AI Assistants</field>
+        <field name="res_model">task.ai.assistant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- ========================================
+         MENU STRUCTURE
+         ======================================== -->
+    
+    <!-- Main Menu -->
+    <menuitem id="menu_smart_task_root"
+              name="🚀 Smart Task"
+              sequence="5"/>
+    
+    <!-- Submenu: Tasks (My Tasks) -->
+    <menuitem id="menu_smart_task_tasks"
+              name="Công việc"
+              parent="menu_smart_task_root"
+              action="project.action_view_task"
+              sequence="5"/>
+    
+    <!-- Submenu: Dashboard -->
+    <menuitem id="menu_smart_task_dashboard"
+              name="📊 Dashboard"
+              parent="menu_smart_task_root"
+              action="action_task_unified_dashboard"
+              sequence="10"/>
+    
+    <!-- Submenu: Reports -->
+    <menuitem id="menu_smart_task_reports"
+              name="Báo cáo Tiến độ"
+              parent="menu_smart_task_root"
+              action="action_task_smart_report"
+              sequence="20"/>
+    
+    <!-- Submenu: Score Cards -->
+    <menuitem id="menu_smart_task_scores"
+              name="Phiếu Điểm"
+              parent="menu_smart_task_root"
+              action="action_task_score_card"
+              sequence="30"/>
+    
+    <!-- Submenu: Analytics -->
+    <menuitem id="menu_smart_task_analytics"
+              name="📈 Analytics Reports"
+              parent="menu_smart_task_root"
+              action="action_task_analytics_report"
+              sequence="40"/>
+    
+    <!-- Submenu: AI & API -->
+    <menuitem id="menu_smart_task_integration"
+              name="🤖 AI &amp; API"
+              parent="menu_smart_task_root"
+              sequence="50"/>
+    
+    <menuitem id="menu_task_git_integration"
+              name="Git Repositories"
+              parent="menu_smart_task_integration"
+              action="action_task_git_integration"
+              sequence="5"/>
+    
+    <menuitem id="menu_task_api_connector"
+              name="API Connectors"
+              parent="menu_smart_task_integration"
+              action="action_task_api_connector"
+              sequence="10"/>
+    
+    <menuitem id="menu_task_ai_assistant"
+              name="AI Assistants"
+              parent="menu_smart_task_integration"
+              action="action_task_ai_assistant"
+              sequence="20"/>
+
+</odoo>
