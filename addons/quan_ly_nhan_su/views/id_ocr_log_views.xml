@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_id_ocr_log_tree" model="ir.ui.view">
+            <field name="name">hr.id.ocr.log.tree</field>
+            <field name="model">hr.id.ocr.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="create_date"/>
+                    <field name="employee_id"/>
+                    <field name="connector_id"/>
+                    <field name="user_id"/>
+                    <field name="id_number"/>
+                    <field name="confidence"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_id_ocr_log_form" model="ir.ui.view">
+            <field name="name">hr.id.ocr.log.form</field>
+            <field name="model">hr.id.ocr.log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="create_date" readonly="1"/>
+                            <field name="employee_id"/>
+                            <field name="connector_id"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="id_number" readonly="1"/>
+                            <field name="id_name" readonly="1"/>
+                            <field name="confidence" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="result_text" nolabel="1" widget="text" readonly="1"/>
+                            <field name="error_message" nolabel="1" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_id_ocr_log" model="ir.actions.act_window">
+            <field name="name">ID OCR Logs</field>
+            <field name="res_model">hr.id.ocr.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hr_id_ocr_log_tree"/>
+        </record>
+
+        <menuitem id="menu_id_ocr_logs" name="ID Verification Logs" parent="menu_root" action="action_hr_id_ocr_log" sequence="9"/>
+    </data>
+</odoo>
+

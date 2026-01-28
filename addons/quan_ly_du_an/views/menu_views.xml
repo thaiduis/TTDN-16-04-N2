@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- MENU: Smart Project Management -->
+        <menuitem id="menu_smart_project_root"
+                  name="Smart Project"
+                  web_icon="smart_project_structure,static/description/icon.png"
+                  sequence="45"/>
+        
+        <menuitem id="menu_smart_project_milestones"
+                  name="Milestones"
+                  parent="menu_smart_project_root"
+                  action="action_project_milestone"
+                  sequence="10"/>
+        
+        <menuitem id="menu_smart_project_okrs"
+                  name="OKRs"
+                  parent="menu_smart_project_root"
+                  action="action_project_okr"
+                  sequence="20"/>
+
+    </data>
+</odoo>

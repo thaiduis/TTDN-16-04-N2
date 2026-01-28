@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_id_ocr_wizard_form" model="ir.ui.view">
+            <field name="name">hr.id.ocr.wizard.form</field>
+            <field name="model">hr.id.ocr.wizard</field>
+            <field name="arch" type="xml">
+                <form string="OCR CCCD">
+                    <sheet>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="connector_id"/>
+                            <field name="image" filename="filename" widget="image"/>
+                            <field name="filename" invisible="1"/>
+                            <field name="apply_to_employee"/>
+                        </group>
+                        <group>
+                            <field name="result_text" nolabel="1" widget="text"/>
+                            <group>
+                                <field name="id_number" readonly="1"/>
+                                <field name="id_name" readonly="1"/>
+                                <field name="confidence" readonly="1"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="action_run_ocr" type="object" string="Chạy OCR" class="btn-primary"/>
+                            <button string="Đóng" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_id_ocr_wizard" model="ir.actions.act_window">
+            <field name="name">OCR CCCD</field>
+            <field name="res_model">hr.id.ocr.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_id_ocr_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_ocr_wizard" name="OCR CCCD (Wizard)" parent="menu_root" action="action_hr_id_ocr_wizard" sequence="8"/>
+    </data>
+</odoo>
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view Kỹ năng -->
+    <record id="view_ky_nang_form" model="ir.ui.view">
+        <field name="name">ky.nang.form</field>
+        <field name="model">ky.nang</field>
+        <field name="arch" type="xml">
+            <form string="Kỹ năng">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="ma_ky_nang"/>
+                        </group>
+                        <group>
+                            <field name="loai_ky_nang"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="mo_ta"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view Kỹ năng -->
+    <record id="view_ky_nang_tree" model="ir.ui.view">
+        <field name="name">ky.nang.tree</field>
+        <field name="model">ky.nang</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách Kỹ năng">
+                <field name="name"/>
+                <field name="ma_ky_nang"/>
+                <field name="loai_ky_nang"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action Kỹ năng -->
+    <record id="action_ky_nang" model="ir.actions.act_window">
+        <field name="name">Danh mục Kỹ năng</field>
+        <field name="res_model">ky.nang</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo kỹ năng mới
+            </p>
+            <p>
+                Quản lý danh mục các kỹ năng/chuyên môn (Python, Design, Sale...)
+            </p>
+        </field>
+    </record>
+
+    <!-- Tree view Kỹ năng Nhân viên (để nhúng vào form nhân viên) -->
+    <record id="view_ky_nang_nhan_vien_tree" model="ir.ui.view">
+        <field name="name">ky.nang.nhan.vien.tree</field>
+        <field name="model">ky.nang.nhan.vien</field>
+        <field name="arch" type="xml">
+            <tree string="Kỹ năng" editable="bottom">
+                <field name="ky_nang_id"/>
+                <field name="trinh_do"/>
+                <field name="kinh_nghiem_nam"/>
+                <field name="chung_chi"/>
+                <field name="ngay_dat"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree view Lịch sử Hiệu suất -->
+    <record id="view_lich_su_hieu_suat_tree" model="ir.ui.view">
+        <field name="name">lich.su.hieu.suat.tree</field>
+        <field name="model">lich.su.hieu.suat</field>
+        <field name="arch" type="xml">
+            <tree string="Lịch sử Hiệu suất" editable="bottom">
+                <field name="ngay_ghi_nhan"/>
+                <field name="loai_ghi_nhan"/>
+                <field name="cong_viec_lien_quan"/>
+                <field name="thoi_gian_du_kien"/>
+                <field name="thoi_gian_thuc_te"/>
+                <field name="chenh_lech_phan_tram" widget="percentage"/>
+                <field name="nhan_xet"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- TREE VIEW: Milestone -->
+        <record id="view_project_milestone_tree" model="ir.ui.view">
+            <field name="name">project.milestone.tree</field>
+            <field name="model">project.milestone</field>
+            <field name="arch" type="xml">
+                <tree string="Milestones">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="deadline"/>
+                    <field name="task_count"/>
+                    <field name="completion_percentage" widget="progressbar"/>
+                    <field name="state" widget="badge" decoration-success="state == 'done'" decoration-warning="state == 'in_progress'"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- FORM VIEW: Milestone -->
+        <record id="view_project_milestone_form" model="ir.ui.view">
+            <field name="name">project.milestone.form</field>
+            <field name="model">project.milestone</field>
+            <field name="arch" type="xml">
+                <form string="Milestone">
+                    <header>
+                        <field name="state" widget="statusbar" 
+                               statusbar_visible="draft,in_progress,done"
+                               options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="project_id"/>
+                                <field name="deadline"/>
+                            </group>
+                            <group>
+                                <field name="sequence"/>
+                                <field name="task_count"/>
+                                <field name="completion_percentage" widget="progressbar"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Mô tả">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                        
+                        <notebook>
+                            <page name="tasks" string="Tasks">
+                                <field name="task_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="user_ids" widget="many2many_tags"/>
+                                        <field name="date_deadline"/>
+                                        <field name="stage_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <!-- KANBAN VIEW: Milestone -->
+        <record id="view_project_milestone_kanban" model="ir.ui.view">
+            <field name="name">project.milestone.kanban</field>
+            <field name="model">project.milestone</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="deadline"/>
+                    <field name="task_count"/>
+                    <field name="completion_percentage"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_record_title">
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <field name="deadline"/> | <field name="task_count"/> tasks
+                                        <div class="o_kanban_record_bottom">
+                                            <progressbar field="completion_percentage" title="Tiến độ"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <field name="state" widget="badge"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        <!-- ACTION: Milestones -->
+        <record id="action_project_milestone" model="ir.actions.act_window">
+            <field name="name">Milestones</field>
+            <field name="res_model">project.milestone</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo Milestone đầu tiên
+                </p>
+                <p>
+                    Milestones giúp chia nhỏ dự án thành các giai đoạn quản lý được
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

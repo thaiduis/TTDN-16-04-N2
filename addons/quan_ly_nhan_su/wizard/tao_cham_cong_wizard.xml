@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard Form -->
+    <record id="view_tao_cham_cong_wizard_form" model="ir.ui.view">
+        <field name="name">tao.cham.cong.wizard.form</field>
+        <field name="model">tao.cham.cong.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Tạo chấm công tự động">
+                <group>
+                    <group>
+                        <field name="thang"/>
+                        <field name="nam"/>
+                    </group>
+                    <group>
+                        <field name="loai_cham_cong_mac_dinh"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="nhan_vien_ids" widget="many2many_tags">
+                        <tree>
+                            <field name="ma_dinh_danh"/>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Tạo chấm công (1-26)" name="action_tao_cham_cong" type="object" class="btn-primary"/>
+                    <button string="Hủy" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_tao_cham_cong_wizard" model="ir.actions.act_window">
+        <field name="name">Tạo chấm công tự động</field>
+        <field name="res_model">tao.cham.cong.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

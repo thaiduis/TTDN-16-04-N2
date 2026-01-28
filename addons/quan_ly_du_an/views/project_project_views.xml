@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- FORM VIEW: Dự án nâng cao -->
+        <record id="view_project_project_form_inherit_smart" model="ir.ui.view">
+            <field name="name">project.project.form.inherit.smart</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                
+                <!-- Add Smart Statistics -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_milestones" type="object" class="oe_stat_button" icon="fa-flag-checkered">
+                        <field name="milestone_count" string="Milestones" widget="statinfo"/>
+                    </button>
+                    
+                    <button name="action_view_okrs" type="object" class="oe_stat_button" icon="fa-trophy">
+                        <field name="okr_count" string="OKRs" widget="statinfo"/>
+                    </button>
+                </xpath>
+                
+                <!-- Add Budget & Health Info -->
+                <xpath expr="//sheet" position="inside">
+                    <group name="smart_info" string="Thông tin Nâng cao">
+                        <group>
+                            <field name="planned_budget"/>
+                            <field name="actual_cost"/>
+                            <field name="budget_usage_percentage" widget="progressbar"/>
+                        </group>
+                        <group>
+                            <field name="budget_status" widget="badge" decoration-success="budget_status == 'safe'" decoration-warning="budget_status == 'warning'" decoration-danger="budget_status == 'critical'"/>
+                            <field name="project_health" widget="badge" decoration-success="project_health == 'excellent'" decoration-info="project_health == 'good'" decoration-warning="project_health == 'at_risk'" decoration-danger="project_health == 'critical'"/>
+                            <field name="current_team_size"/>
+                        </group>
+                    </group>
+                </xpath>
+                
+                <!-- Add Milestones tab -->
+                <xpath expr="//notebook" position="inside">
+                    <page name="milestones" string="Milestones">
+                        <field name="milestone_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="deadline"/>
+                                <field name="task_count"/>
+                                <field name="completion_percentage" widget="progressbar"/>
+                                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-warning="state == 'in_progress'"/>
+                            </tree>
+                        </field>
+                    </page>
+                    
+                    <!-- Add OKRs tab -->
+                    <page name="okrs" string="OKRs (Mục tiêu)">
+                        <field name="okr_ids">
+                            <tree>
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="kr_count"/>
+                                <field name="progress" widget="progressbar"/>
+                                <field name="deadline"/>
+                                <field name="state" widget="badge" decoration-success="state == 'achieved'" decoration-danger="state == 'failed'"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                
+            </field>
+        </record>
+
+    </data>
+</odoo>

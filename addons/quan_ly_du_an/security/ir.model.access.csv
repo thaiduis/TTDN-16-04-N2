@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_milestone_user,access.project.milestone.user,model_project_milestone,project.group_project_user,1,1,1,0
+access_project_milestone_manager,access.project.milestone.manager,model_project_milestone,project.group_project_manager,1,1,1,1
+access_project_okr_user,access.project.okr.user,model_project_okr,project.group_project_user,1,1,1,0
+access_project_okr_manager,access.project.okr.manager,model_project_okr,project.group_project_manager,1,1,1,1
+access_project_okr_key_result_user,access.project.okr.key.result.user,model_project_okr_key_result,project.group_project_user,1,1,1,0
+access_project_okr_key_result_manager,access.project.okr.key.result.manager,model_project_okr_key_result,project.group_project_manager,1,1,1,1

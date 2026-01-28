@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Phòng ban Views -->
+        <record id="view_phong_ban_tree" model="ir.ui.view">
+            <field name="name">phong.ban.tree</field>
+            <field name="model">phong.ban</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ma_phong_ban"/>
+                    <field name="name"/>
+                    <field name="truong_phong_id"/>
+                    <field name="so_luong_nhan_vien"/>
+                    <field name="mo_ta"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_phong_ban_form" model="ir.ui.view">
+            <field name="name">phong.ban.form</field>
+            <field name="model">phong.ban</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ma_phong_ban"/>
+                                <field name="name"/>
+                                <field name="truong_phong_id"/>
+                            </group>
+                            <group>
+                                <field name="so_luong_nhan_vien"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="mo_ta" placeholder="Nhập mô tả về phòng ban..."/>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Danh sách nhân viên">
+                                <field name="nhan_vien_ids">
+                                    <tree>
+                                        <field name="ma_dinh_danh"/>
+                                        <field name="name"/>
+                                        <field name="chuc_vu_id"/>
+                                        <field name="email"/>
+                                        <field name="so_dien_thoai"/>
+                                        <field name="trang_thai" widget="badge"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_phong_ban_search" model="ir.ui.view">
+            <field name="name">phong.ban.search</field>
+            <field name="model">phong.ban</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_phong_ban"/>
+                    <field name="name"/>
+                    <field name="truong_phong_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_phong_ban" model="ir.actions.act_window">
+            <field name="name">Phòng ban</field>
+            <field name="res_model">phong.ban</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Chức vụ Views -->
+        <record id="view_chuc_vu_tree" model="ir.ui.view">
+            <field name="name">chuc.vu.tree</field>
+            <field name="model">chuc.vu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ma_chuc_vu"/>
+                    <field name="name"/>
+                    <field name="mo_ta"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_chuc_vu_form" model="ir.ui.view">
+            <field name="name">chuc.vu.form</field>
+            <field name="model">chuc.vu</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="ma_chuc_vu"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="mo_ta" placeholder="Mô tả về chức vụ..."/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_chuc_vu_search" model="ir.ui.view">
+            <field name="name">chuc.vu.search</field>
+            <field name="model">chuc.vu</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_chuc_vu"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_chuc_vu" model="ir.actions.act_window">
+            <field name="name">Chức vụ</field>
+            <field name="res_model">chuc.vu</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- TREE VIEW: OKR -->
+        <record id="view_project_okr_tree" model="ir.ui.view">
+            <field name="name">project.okr.tree</field>
+            <field name="model">project.okr</field>
+            <field name="arch" type="xml">
+                <tree string="OKRs">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="kr_count"/>
+                    <field name="progress" widget="progressbar"/>
+                    <field name="deadline"/>
+                    <field name="state" widget="badge" decoration-success="state == 'achieved'" decoration-danger="state == 'failed'"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- FORM VIEW: OKR -->
+        <record id="view_project_okr_form" model="ir.ui.view">
+            <field name="name">project.okr.form</field>
+            <field name="model">project.okr</field>
+            <field name="arch" type="xml">
+                <form string="OKR">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="active,achieved,failed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="project_id"/>
+                            </group>
+                            <group>
+                                <field name="deadline"/>
+                                <field name="progress" widget="progressbar"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Mô tả">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                        
+                        <notebook>
+                            <page name="key_results" string="Key Results">
+                                <field name="key_result_ids">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="name"/>
+                                        <field name="target_value"/>
+                                        <field name="current_value"/>
+                                        <field name="unit"/>
+                                        <field name="progress" widget="progressbar"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <!-- ACTION: OKRs -->
+        <record id="action_project_okr" model="ir.actions.act_window">
+            <field name="name">OKRs</field>
+            <field name="res_model">project.okr</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo OKR đầu tiên
+                </p>
+                <p>
+                    OKR (Objective &amp; Key Results) giúp đo lường mục tiêu dự án
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

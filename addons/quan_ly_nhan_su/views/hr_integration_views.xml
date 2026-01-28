@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================
+         NHÂN VIÊN: Thêm Task & Project Info
+         ======================================== -->
+    <record id="view_nhan_vien_form_integration" model="ir.ui.view">
+        <field name="name">nhan.vien.form.integration</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="quan_ly_nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- Add Smart Buttons -->
+            <xpath expr="//sheet" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <!-- Temporary commented - will enable after upgrade
+                    <button class="oe_stat_button" 
+                            type="object"
+                            name="action_view_tasks"
+                            icon="fa-tasks">
+                        <field name="task_count" widget="statinfo" string="Tasks"/>
+                    </button>
+                    
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="action_view_projects" 
+                            icon="fa-folder-open">
+                        <field name="project_count" widget="statinfo" string="Dự án"/>
+                    </button>
+                    
+                    <button class="oe_stat_button" 
+                            type="object"
+                            name="action_view_performance"
+                            icon="fa-star"
+                            attrs="{'invisible': [('avg_task_score', '=', 0)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="avg_task_score" widget="float" digits="[16,1]"/>
+                            </span>
+                            <span class="o_stat_text">Điểm TB</span>
+                        </div>
+                    </button>
+                    
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="action_view_xp" 
+                            icon="fa-trophy"
+                            attrs="{'invisible': [('total_xp_earned', '=', 0)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="total_xp_earned"/>
+                            </span>
+                            <span class="o_stat_text">XP</span>
+                        </div>
+                    </button>
+                    -->
+                </div>
+            </xpath>
+            
+            <!-- Add Performance Tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="📊 Performance" name="performance">
+                    <group>
+                        <group string="Task Performance">
+                            <field name="total_tasks_completed"/>
+                            <field name="total_tasks_late"/>
+                            <field name="avg_task_score"/>
+                            <field name="total_xp_earned"/>
+                        </group>
+                        
+                        <group string="Workload">
+                            <field name="current_workload_hours"/>
+                            <field name="overload_warning"/>
+                            <field name="skill_gap_count"/>
+                        </group>
+                    </group>
+                    
+                    <separator string="Dự án đang tham gia"/>
+                    <field name="project_ids" nolabel="1">
+                        <tree>
+                            <field name="name"/>
+                            <field name="date_start"/>
+                            <field name="date"/>
+                            <field name="task_count"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- ========================================
+         BẢNG LƯƠNG: Hiển thị thưởng Task
+         ======================================== -->
+    <record id="view_bang_luong_form_integration" model="ir.ui.view">
+        <field name="name">bang.luong.form.integration</field>
+        <field name="model">bang.luong</field>
+        <field name="inherit_id" ref="quan_ly_nhan_su.view_bang_luong_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='tien_thuong']" position="after">
+                <field name="task_completion_bonus" readonly="1"/>
+                <field name="quality_bonus" readonly="1"/>
+                <field name="project_bonus"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- ========================================
+         CHẤM CÔNG: Thêm Task Link
+         ======================================== -->
+    <record id="view_cham_cong_form_integration" model="ir.ui.view">
+        <field name="name">cham.cong.form.integration</field>
+        <field name="model">cham.cong</field>
+        <field name="inherit_id" ref="quan_ly_nhan_su.view_cham_cong_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='ghi_chu']" position="before">
+                <field name="task_id"/>
+                <field name="project_id" readonly="1"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>

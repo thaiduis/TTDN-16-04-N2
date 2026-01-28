@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_id_ocr_connector_tree" model="ir.ui.view">
+            <field name="name">hr.id.ocr.connector.tree</field>
+            <field name="model">hr.id.ocr.connector</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="provider"/>
+                    <field name="endpoint"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_id_ocr_connector_form" model="ir.ui.view">
+            <field name="name">hr.id.ocr.connector.form</field>
+            <field name="model">hr.id.ocr.connector</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="provider"/>
+                            <field name="api_key"/>
+                            <field name="endpoint"/>
+                            <field name="active"/>
+                            <field name="default_for_new"/>
+                            <field name="note"/>
+                        </group>
+                        <footer>
+                            <button name="test_connection" type="object" string="Test Connection" class="btn-primary"/>
+                            <button string="Close" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_id_ocr_connector" model="ir.actions.act_window">
+            <field name="name">OCR Connectors</field>
+            <field name="res_model">hr.id.ocr.connector</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hr_id_ocr_connector_tree"/>
+        </record>
+
+        <!-- Menu under root QLNS -->
+        <menuitem id="menu_ocr_connector" name="OCR Connectors" parent="menu_root" action="action_hr_id_ocr_connector" sequence="7"/>
+    </data>
+</odoo>
+

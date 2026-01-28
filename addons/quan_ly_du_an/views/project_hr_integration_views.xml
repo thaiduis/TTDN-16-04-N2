@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========================================
+         PROJECT: Thêm HR Team Management
+         ======================================== -->
+    <record id="view_project_form_hr_integration" model="ir.ui.view">
+        <field name="name">project.project.form.hr.integration</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="view_project_project_form_inherit_smart"/>
+        <field name="arch" type="xml">
+            
+            <!-- Add Team Button -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" 
+                        icon="fa-users"
+                        context="{'search_default_project_id': [active_id], 'default_project_id': active_id}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Team</span>
+                    </div>
+                </button>
+                
+                <button class="oe_stat_button" 
+                        icon="fa-star"
+                        attrs="{'invisible': [('avg_team_score', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="avg_team_score" widget="float" digits="[16,1]"/>
+                        </span>
+                        <span class="o_stat_text">Team Score</span>
+                    </div>
+                </button>
+                
+                <button class="oe_stat_button" 
+                        icon="fa-trophy"
+                        attrs="{'invisible': [('team_xp_total', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="team_xp_total"/>
+                        </span>
+                        <span class="o_stat_text">Team XP</span>
+                    </div>
+                </button>
+            </xpath>
+            
+            <!-- Add HR fields in existing group -->
+            <xpath expr="//group[@name='smart_info']" position="inside">
+                <group string="HR &amp; Team">
+                    <field name="phong_ban_id"/>
+                    <field name="labor_budget"/>
+                    <field name="actual_labor_cost" readonly="1"/>
+                </group>
+            </xpath>
+            
+            <!-- Add Team Tab -->
+            <xpath expr="//page[@name='okrs']" position="after">
+                <page string="👥 Team" name="team">
+                    <field name="nhan_vien_ids" nolabel="1">
+                        <tree>
+                            <field name="ma_dinh_danh"/>
+                            <field name="name"/>
+                            <field name="phong_ban_id"/>
+                            <field name="chuc_vu_id"/>
+                            <field name="task_count"/>
+                            <field name="avg_task_score"/>
+                            <field name="total_xp_earned"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- ========================================
+         MILESTONE: Thêm Bonus Management
+         ======================================== -->
+    <record id="view_milestone_form_integration" model="ir.ui.view">
+        <field name="name">project.milestone.form.integration</field>
+        <field name="model">project.milestone</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_project_milestone_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='description']" position="after">
+                <separator string="Thưởng Hoàn thành"/>
+                <group>
+                    <field name="completion_bonus"/>
+                    <field name="bonus_distributed" readonly="1"/>
+                </group>
+                <button name="action_distribute_bonus" 
+                        type="object"
+                        string="Phân bổ Thưởng"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('bonus_distributed', '=', True), ('completion_bonus', '=', 0)]}"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- ========================================
+         OKR: Thêm Owner & KPI
+         ======================================== -->
+    <record id="view_okr_form_integration" model="ir.ui.view">
+        <field name="name">project.okr.form.integration</field>
+        <field name="model">project.okr</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_project_okr_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="owner_id"/>
+            </xpath>
+            
+            <xpath expr="//field[@name='progress']" position="after">
+                <separator string="KPI Integration"/>
+                <group>
+                    <field name="affects_kpi"/>
+                    <field name="kpi_weight" attrs="{'invisible': [('affects_kpi', '=', False)]}"/>
+                </group>
+                <button name="action_sync_to_kpi" 
+                        type="object"
+                        string="Đồng bộ vào KPI"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('affects_kpi', '=', False)]}"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>
