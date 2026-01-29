@@ -156,6 +156,7 @@ Các module chính:
 - Khoa: Công nghệ thông tin - Trường Đại học Đại Nam
 - Liên hệ email: thaiitkk2004@gmail.com
 
-<p align="center">© 2025 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.</p>
+<p align="center">© 2026 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.</p>
+
 
 
