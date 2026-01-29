@@ -120,36 +120,21 @@ Các module chính:
 
 ---
 
-## 7. Quy trình làm việc đề xuất (Workflow)
+## 7. Một số hình ảnh hệ thống
 
-1. Tạo dự án → tạo milestone/sprint → phân công tasks cho thành viên
-2. Thành viên cập nhật trạng thái, log thời gian, thêm comment
-3. Manager review và chuyển task sang Done → lặp cho sprint tiếp theo
-4. Xuất báo cáo tiến độ theo tuần/tháng cho stakeholder
+![Server GUI](docs/Server-Update.png)
 
 ---
 
-## 8. Hướng dẫn sử dụng (ngắn)
-
-- Đăng nhập/Đăng ký → Tạo/Chọn dự án
-- Dùng Board để kéo-thả task giữa các trạng thái
-- Click task để xem chi tiết, thêm bình luận và đính kèm
-- Sử dụng bộ lọc để tìm task theo người phụ trách, tag, hoặc deadline
+![Server GUI](docs/LichsuUpdate.png)
 
 ---
 
-## 9. Export / Import dữ liệu
-
-- Hỗ trợ xuất CSV cho báo cáo hoặc backup
-- Hỗ trợ import bằng file CSV/JSON theo định dạng mẫu
+![Server GUI](docs/Form-update.png) 
 
 ---
 
-## 10. Góp ý & Đóng góp
 
-1. Fork repository → tạo branch feature/bugfix → mở Pull Request
-2. Viết test cho tính năng mới, giữ coding style nhất quán
-3. Mô tả rõ ràng issue/PR: mục tiêu, cách test, ảnh chụp màn hình nếu cần
 
 ## 📫 11. Liên hệ
 - Họ và tên: Vũ Duy Thái
@@ -157,6 +142,7 @@ Các module chính:
 - Liên hệ email: thaiitkk2004@gmail.com
 
 <p align="center">© 2026 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.</p>
+
 
 
 
