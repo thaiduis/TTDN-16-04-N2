@@ -4,8 +4,7 @@
     </a>
 </h2>
 <h2 align="center">
-   Ứng dụng tra cứu từ điển Anh–Việt (TCP)
-</h2>
+TRIỂN KHAI PHẦN MỀM QUẢN LÝ DỰ ÁN VÀ CÔNG VIỆC TRÊN ODOO</h2>
 <div align="center">
     <p align="center">
         <img src="docs/aiotlab_logo.png" alt="AIoTLab Logo" width="170"/>
@@ -158,4 +157,5 @@ Các module chính:
 - Liên hệ email: thaiitkk2004@gmail.com
 
 <p align="center">© 2025 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.</p>
+
 
