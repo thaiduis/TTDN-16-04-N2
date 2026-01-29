@@ -20,7 +20,7 @@ TRIỂN KHAI PHẦN MỀM QUẢN LÝ DỰ ÁN VÀ CÔNG VIỆC TRÊN ODOO</h2>
 
 ## 📖 1. Giới thiệu
 
-Ứng dụng `quan_ly_cong_viec` là hệ thống quản lý công việc và dự án nhằm hỗ trợ lập kế hoạch, phân công, theo dõi tiến độ và báo cáo kết quả. Hệ thống thích hợp cho nhóm nhỏ, đội phát triển phần mềm, hoặc quản lý nội bộ tổ chức, giúp tăng hiệu suất và minh bạch trong công việc.
+Ứng dụng quản lý dự án và công việc là hệ thống quản lý công việc và dự án nhằm hỗ trợ lập kế hoạch, phân công, theo dõi tiến độ và báo cáo kết quả. Hệ thống thích hợp cho nhóm nhỏ, đội phát triển phần mềm, hoặc quản lý nội bộ tổ chức, giúp tăng hiệu suất và minh bạch trong công việc.
 
 Các mục tiêu chính:
 - Tổ chức và quản lý dự án, sprint, milestone
@@ -157,6 +157,7 @@ Các module chính:
 - Liên hệ email: thaiitkk2004@gmail.com
 
 <p align="center">© 2026 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.</p>
+
 
 
 
