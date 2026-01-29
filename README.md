@@ -1,72 +1,161 @@
+<h2 align="center">
+    <a href="https://dainam.edu.vn/vi/khoa-cong-nghe-thong-tin">
+    🎓 Faculty of Information Technology (DaiNam University)
+    </a>
+</h2>
+<h2 align="center">
+   Ứng dụng tra cứu từ điển Anh–Việt (TCP)
+</h2>
+<div align="center">
+    <p align="center">
+        <img src="docs/aiotlab_logo.png" alt="AIoTLab Logo" width="170"/>
+        <img src="docs/fitdnu_logo.png" alt="AIoTLab Logo" width="180"/>
+        <img src="docs/dnu_logo.png" alt="DaiNam University Logo" width="200"/>
+    </p>
+
+[![AIoTLab](https://img.shields.io/badge/AIoTLab-green?style=for-the-badge)](https://www.facebook.com/DNUAIoTLab)
+[![Faculty of Information Technology](https://img.shields.io/badge/Faculty%20of%20Information%20Technology-blue?style=for-the-badge)](https://dainam.edu.vn/vi/khoa-cong-nghe-thong-tin)
+[![DaiNam University](https://img.shields.io/badge/DaiNam%20University-orange?style=for-the-badge)](https://dainam.edu.vn)
+
+</div>
+
+## 📖 1. Giới thiệu
+
+Ứng dụng `quan_ly_cong_viec` là hệ thống quản lý công việc và dự án nhằm hỗ trợ lập kế hoạch, phân công, theo dõi tiến độ và báo cáo kết quả. Hệ thống thích hợp cho nhóm nhỏ, đội phát triển phần mềm, hoặc quản lý nội bộ tổ chức, giúp tăng hiệu suất và minh bạch trong công việc.
+
+Các mục tiêu chính:
+- Tổ chức và quản lý dự án, sprint, milestone
+- Tạo, gán và theo dõi công việc (tasks) với trạng thái, ưu tiên và deadline
+- Quản lý thành viên, vai trò và quyền truy cập
+- Ghi nhận lịch sử hoạt động, thông báo và báo cáo tiến độ
+- Hỗ trợ xuất dữ liệu (CSV/JSON) và tích hợp cơ bản với hệ thống khác
+
 ---
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
-![GitLab](https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
-![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
-[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+## 🧩 2. Tính năng chính
+
+### 2.1 Quản lý Dự án (Project Management)
+
+- **Tạo & cấu trúc dự án**: tên dự án, mô tả, start/end date, stakeholders.
+- **Milestone / Sprint**: định nghĩa milestone, quản lý sprint, target và trạng thái.
+- **Phân bổ nguồn lực**: gán thành viên vào dự án, theo dõi công suất và vai trò.
+- **Quản lý rủi ro & tài liệu**: ghi chú, tài liệu liên quan, issue tracking liên kết.
+- **Báo cáo dự án**: báo cáo tiến độ, burn-down chart, deliverables theo milestone.
+
+### 2.2 Quản lý Công việc (Task Management)
+
+- **Tạo task chi tiết**: tiêu đề, mô tả, checklist, phụ thuộc (dependency), tag.
+- **Phân công & quyền hạn**: assignee, watchers, thời hạn (deadline), ưu tiên (priority).
+- **Board & Workflow**: Kanban board (To Do → In Progress → Done), kéo-thả chuyển trạng thái.
+- **Thời gian & báo cáo**: ước lượng thời gian, log time, báo cáo thời gian thực hiện.
+- **Tương tác**: bình luận, đính kèm file, mentions và thông báo (notifications).
+- **Quy tắc & automation**: rule tự động chuyển trạng thái, reminder, recurring tasks.
 
 
+---
 
+## 🛠️ 3. Công nghệ sử dụng
 
-# 1. Cài đặt công cụ, môi trường và các thư viện cần thiết
+- Backend: `Python 3.10+` (Flask / FastAPI) hoặc `Node.js` (Express) — tuỳ cấu hình dự án
+- Frontend: `React` / `Vue` hoặc giao diện web đơn giản (HTML/CSS/JS)
+- Database: `PostgreSQL` / `MySQL` / `SQLite` (tùy trường hợp)
+- Authentication: JWT / Session-based
+- DevOps: Docker, docker-compose cho môi trường phát triển
 
-## 1.1. Clone project.
-git clone https://gitlab.com/anhlta/odoo-fitdnu.git
-git checkout 
+---
 
-## 1.2. cài đặt các thư viện cần thiết
+## 🧭 4. Cài đặt & Chạy nhanh (Quickstart)
 
-Người sử dụng thực thi các lệnh sau đề cài đặt các thư viện cần thiết
+*LƯU Ý*: các hướng dẫn dưới đây là mẫu; điều chỉnh theo stack thực tế trong repo.
 
+### 4.1. Yêu cầu
+- Python 3.10+ / Node.js 16+
+- Docker & docker-compose (khuyến nghị)
+- PostgreSQL / MySQL (nếu không dùng Docker)
+
+### 4.2. Chạy bằng Docker (gợi ý)
+```bash
+docker-compose up --build -d
 ```
-sudo apt-get install libxml2-dev libxslt-dev libldap2-dev libsasl2-dev libssl-dev python3.10-distutils python3.10-dev build-essential libssl-dev libffi-dev zlib1g-dev python3.10-venv libpq-dev
-```
-## 1.3. khởi tạo môi trường ảo.
+Truy cập ứng dụng tại `http://localhost:8000` hoặc theo cấu hình.
 
-`python3.10 -m venv ./venv`
-Thay đổi trình thông dịch sang môi trường ảo và chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
-
-```
-source venv/bin/activate
-pip3 install -r requirements.txt
-```
-
-# 2. Setup database
-
-Khởi tạo database trên docker bằng việc thực thi file dockercompose.yml.
-
-`docker-compose up -d`
-
-# 3. Setup tham số chạy cho hệ thống
-
-## 3.1. Khởi tạo odoo.conf
-
-Tạo tệp **odoo.conf** có nội dung như sau:
-
-```
-[options]
-addons_path = addons
-db_host = localhost
-db_password = odoo
-db_user = odoo
-db_port = 5432
-xmlrpc_port = 8069
-```
-Có thể kế thừa từ **odoo.conf.template**
-
-Ngoài ra có thể thêm mổ số parameters như:
-
-```
--c _<đường dẫn đến tệp odoo.conf>_
--u _<tên addons>_ giúp cập nhật addons đó trước khi khởi chạy
--d _<tên database>_ giúp chỉ rõ tên database được sử dụng
---dev=all giúp bật chế độ nhà phát triển 
+### 4.3. Cài đặt thủ công (ví dụ Python)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+# cấu hình DATABASE_URL, SECRET_KEY, ...
+alembic upgrade head   # nếu dùng alembic cho migration
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-# 4. Chạy hệ thống và cài đặt các ứng dụng cần thiết
+---
 
-Người sử dụng truy cập theo đường dẫn _http://localhost:8069/_ để đăng nhập vào hệ thống.
+## 5. Cấu hình cơ sở dữ liệu
 
-Hoàn tất
-    
+- Tạo database và user theo hướng dẫn DB engine đang sử dụng.
+- File mẫu schema/migration có thể nằm tại `database/schema.sql` hoặc thư mục `migrations/`.
+- Thiết lập biến môi trường `DATABASE_URL` hoặc chỉnh `src/config` tương ứng.
+
+---
+
+## 6. Kiến trúc & Cấu trúc mã nguồn
+
+Ví dụ cấu trúc:
+```
+quan_ly_cong_viec/
+├── app/               # backend source
+├── web/               # frontend source
+├── database/          # schema, seeders, migrations
+├── docs/              # hình ảnh, hướng dẫn
+├── docker-compose.yml
+└── README.md
+```
+
+Các module chính:
+- `projects`: quản lý dự án, milestone
+- `tasks`: CRUD tasks, checklist, trạng thái
+- `users`: quản lý user, authentication, role
+- `reports`: sinh báo cáo tiến độ, export
+
+---
+
+## 7. Quy trình làm việc đề xuất (Workflow)
+
+1. Tạo dự án → tạo milestone/sprint → phân công tasks cho thành viên
+2. Thành viên cập nhật trạng thái, log thời gian, thêm comment
+3. Manager review và chuyển task sang Done → lặp cho sprint tiếp theo
+4. Xuất báo cáo tiến độ theo tuần/tháng cho stakeholder
+
+---
+
+## 8. Hướng dẫn sử dụng (ngắn)
+
+- Đăng nhập/Đăng ký → Tạo/Chọn dự án
+- Dùng Board để kéo-thả task giữa các trạng thái
+- Click task để xem chi tiết, thêm bình luận và đính kèm
+- Sử dụng bộ lọc để tìm task theo người phụ trách, tag, hoặc deadline
+
+---
+
+## 9. Export / Import dữ liệu
+
+- Hỗ trợ xuất CSV cho báo cáo hoặc backup
+- Hỗ trợ import bằng file CSV/JSON theo định dạng mẫu
+
+---
+
+## 10. Góp ý & Đóng góp
+
+1. Fork repository → tạo branch feature/bugfix → mở Pull Request
+2. Viết test cho tính năng mới, giữ coding style nhất quán
+3. Mô tả rõ ràng issue/PR: mục tiêu, cách test, ảnh chụp màn hình nếu cần
+
+## 📫 11. Liên hệ
+- Họ và tên: Vũ Duy Thái
+- Khoa: Công nghệ thông tin - Trường Đại học Đại Nam
+- Liên hệ email: thaiitkk2004@gmail.com
+
+<p align="center">© 2025 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.</p>
+
