@@ -65,8 +65,6 @@ Các mục tiêu chính:
 
 ## 🧭 4. Cài đặt & Chạy nhanh (Quickstart)
 
-*LƯU Ý*: các hướng dẫn dưới đây là mẫu; điều chỉnh theo stack thực tế trong repo.
-
 ### 4.1. Yêu cầu
 - Python 3.10+ / Node.js 16+
 - Docker & docker-compose (khuyến nghị)
@@ -122,17 +120,19 @@ Các module chính:
 
 ## 7. Một số hình ảnh hệ thống
 
-![Server GUI](docs/Server-Update.png)
+![Server GUI](docs/nhanvien.png)
 
 ---
 
-![Server GUI](docs/LichsuUpdate.png)
+![Server GUI](docs/congviec.png)
 
 ---
 
-![Server GUI](docs/Form-update.png) 
+![Server GUI](docs/duan.png) 
 
 ---
+
+![Server GUI](docs/task_analytics.png) 
 
 
 
@@ -142,6 +142,7 @@ Các module chính:
 - Liên hệ email: thaiitkk2004@gmail.com
 
 <p align="center">© 2026 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.</p>
+
 
 
 
